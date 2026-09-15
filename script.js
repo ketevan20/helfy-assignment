@@ -2,7 +2,14 @@ const testimonialContainer = document.querySelector(".testimonials-track");
 const prevButton = document.querySelector(".testimonial-prev");
 const nextButton = document.querySelector(".testimonial-next");
 const dots = document.querySelector(".dots")
+const stepsList = document.querySelector(".how-it-works-steps");
+const stepsPrev = document.querySelector(".steps-prev");
+const stepsNext = document.querySelector(".steps-next");
+const stepsPagination = document.querySelector(".steps-pagination");
+const stepCards = document.querySelectorAll(".step-card");
 
+let stepsIndex = 0;
+const STEPS_GAP =  35.74;
 let currentIndex = 0;
 
 const testimonialItems = [
@@ -55,6 +62,72 @@ const testimonialItems = [
         review: 'Von der Bestellung bis zur Lieferung war alles <span>klar, schnell und zuverlässig</span>. Vielen Dank für den guten Service.',
     }
 ];
+
+const renderStepsDots = () => {
+    stepsPagination.innerHTML = "";
+
+    stepCards.forEach((_, index) => {
+        const button = document.createElement("button");
+
+        button.classList.add("steps-dot-button");
+
+        if (index === stepsIndex) {
+            button.classList.add("active");
+        }
+
+        stepsPagination.appendChild(button);
+
+        button.addEventListener("click", () => {
+            stepsIndex = index;
+            updateStepsSlider();
+            updateStepsDots();
+        });
+    });
+};
+
+const updateStepsDots = () => {
+    const dotButtons = stepsPagination.querySelectorAll(".steps-dot-button");
+
+    dotButtons.forEach((button, index) => {
+        button.classList.toggle("active", index === stepsIndex);
+    });
+};
+
+const updateStepsSlider = () => {
+    if (window.innerWidth >= 1024) {
+        stepsList.style.transform = "";
+        return;
+    }
+
+    const card = stepCards[0];
+
+    if (!card) return;
+
+    const cardWidth = card.getBoundingClientRect().width;
+
+    stepsList.style.transform =
+        `translateX(-${stepsIndex * (cardWidth + STEPS_GAP)}px)`;
+};
+
+stepsNext.addEventListener("click", () => {
+    if (stepsIndex < stepCards.length - 1) {
+        stepsIndex++;
+        updateStepsSlider();
+        updateStepsDots();
+    }
+});
+
+stepsPrev.addEventListener("click", () => {
+    if (stepsIndex > 0) {
+        stepsIndex--;
+        updateStepsSlider();
+        updateStepsDots();
+    }
+});
+
+window.addEventListener("resize", () => {
+    updateStepsSlider();
+});
 
 const renderTestimonials = () => {
     testimonialContainer.innerHTML = "";
@@ -130,7 +203,7 @@ const updateSlider = (index = currentIndex) => {
 };
 
 const getCardCount = () => {
-    return window.innerWidth < 860 ? 1 : 4;
+    return window.innerWidth < 1024 ? 1 : 4;
 };
 
 nextButton.addEventListener("click", () => {
@@ -152,4 +225,6 @@ prevButton.addEventListener("click", () => {
 });
 
 renderTestimonials();
-renderDots()
+renderDots();
+renderStepsDots();
+updateStepsSlider();
