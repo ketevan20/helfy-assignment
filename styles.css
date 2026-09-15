@@ -89,7 +89,7 @@ header {
     background-color: #E8F2E4;
 }
 
-.hero-img-section > img {
+.hero-img-section>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -103,6 +103,8 @@ header {
     flex-direction: column;
     gap: 30px;
     padding-right: clamp(40px, 8vw, 120px);
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .hero-text {
@@ -117,7 +119,7 @@ header {
     gap: 24px;
 }
 
-.hero-text > div > h1 {
+.hero-text>div>h1 {
     font-size: 70px;
     font-weight: 600;
 }
@@ -139,7 +141,7 @@ header {
     gap: 12px;
 }
 
-.hero-text > button {
+.hero-text>button {
     align-self: flex-start;
     background-color: #154B3E;
     border-radius: 10px;
@@ -158,4 +160,112 @@ header {
 
 .stars-container {
     align-self: flex-start;
+}
+
+.testimonials-section {
+    padding: 82px 0 56px;
+    background-color: #F5F9F6;
+    padding: 60px 10% 48px 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.testimonials-title {
+    color: #08080A;
+    font-size: 52px;
+}
+
+.testimonials-title>span {
+    color: #008935;
+}
+
+.testimonials-viewport {
+    overflow: hidden;
+}
+
+.testimonials-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    gap: 24px;
+}
+
+.testimonial-card {
+    padding: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    list-style: none;
+    flex: 0 0 calc((100% - 3 * 24px) / 4);
+    background-color: white;
+    border-radius: 20px;
+}
+
+.testimonial-card>p {
+    margin-top: 11px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.testimonial-card > time {
+    color: rgba(97, 105, 117, 1);
+}
+
+.testimonial-card>div {
+    display: flex;
+    gap: 4.76px;
+    align-items: center;
+}
+
+.testimonial-card > div > p {
+    font-size: 13.6px;
+    color: #08080A;
+    opacity: 70%;
+}
+
+.testimonial-card > p > span {
+    color: #008935;
+}
+
+.testimonial-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.testimonial-controls > button {
+    background-color: #FFFFFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+}
+
+.dots {
+    display: flex;
+    gap: 18px;
+}
+
+.testimonial-dot-button {
+    width: 10px;
+    height: 10px;
+    background-color: #9FBB96;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.testimonial-dot-button.active {
+    background-color: #008935;
+}
+
+@media (max-width: 860px) {
+    .testimonial-card {
+        flex: 0 0 100%;
+    }
 }
