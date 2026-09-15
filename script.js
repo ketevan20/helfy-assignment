@@ -94,7 +94,7 @@ const updateStepsDots = () => {
 };
 
 const updateStepsSlider = () => {
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth > 1024) {
         stepsList.style.transform = "";
         return;
     }
